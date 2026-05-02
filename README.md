@@ -28,11 +28,11 @@ If you want to keep up with changes to these skills, and any new ones I create, 
 npx skills@latest add mattpocock/skills
 ```
 
-2. Pick the skills you want, and which coding agents you want to install them on. **Make sure you select `/setup-matt-pocock-skills`**.
+2. Pick the skills you want, and which coding agents you want to install them on. **Make sure you select `setup-agent-skills`**.
 
-3. Run `/setup-matt-pocock-skills` in your agent. It will:
+3. Ask your agent to use `setup-agent-skills`. In Codex, write something like: "Use `setup-agent-skills` to set up this repo." It will:
    - Ask you which issue tracker you want to use (GitHub, Linear, or local files)
-   - Ask you what labels you apply to ticks when you triage them (`/triage` uses labels)
+   - Ask you what labels you apply to issues when you triage them (`triage` uses labels)
    - Ask you where you want to save any docs we create
 
 4. Bam - you're ready to go.
@@ -148,7 +148,7 @@ Skills I use daily for code work.
 - **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** — Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` and ADRs inline.
 - **[triage](./skills/engineering/triage/SKILL.md)** — Triage issues through a state machine of triage roles.
 - **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — Find deepening opportunities in a codebase, informed by the domain language in `CONTEXT.md` and the decisions in `docs/adr/`.
-- **[setup-matt-pocock-skills](./skills/engineering/setup-matt-pocock-skills/SKILL.md)** — Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume. Run once per repo before using `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out`.
+- **[setup-agent-skills](./skills/engineering/setup-agent-skills/SKILL.md)** — Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume. Run once per repo before using `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out`.
 - **[tdd](./skills/engineering/tdd/SKILL.md)** — Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
 - **[to-issues](./skills/engineering/to-issues/SKILL.md)** — Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices.
 - **[to-prd](./skills/engineering/to-prd/SKILL.md)** — Turn the current conversation context into a PRD and submit it as a GitHub issue. No interview — just synthesizes what you've already discussed.
@@ -166,7 +166,7 @@ General workflow tools, not code-specific.
 
 Tools I keep around but rarely use.
 
-- **[git-guardrails-claude-code](./skills/misc/git-guardrails-claude-code/SKILL.md)** — Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, etc.) before they execute.
+- **[git-guardrails](./skills/misc/git-guardrails/SKILL.md)** — Set up safeguards that block or warn before dangerous git commands (push, reset --hard, clean, etc.) execute.
 - **[migrate-to-shoehorn](./skills/misc/migrate-to-shoehorn/SKILL.md)** — Migrate test files from `as` type assertions to @total-typescript/shoehorn.
 - **[scaffold-exercises](./skills/misc/scaffold-exercises/SKILL.md)** — Create exercise directory structures with sections, problems, solutions, and explainers.
 - **[setup-pre-commit](./skills/misc/setup-pre-commit/SKILL.md)** — Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.
