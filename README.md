@@ -97,7 +97,7 @@ It's hard to explain how powerful this is. It might be the single coolest techni
 
 ### #3: The Code Doesn't Work
 
-> "Always take small, deliberate steps. The rate of feedback is your speed limit. Never take on a task that’s too big."
+> "Always take small, deliberate steps. The rate of feedback is your speed limit. Never take on a task that's too big."
 >
 > David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)
 
@@ -144,29 +144,35 @@ Software engineering fundamentals matter more than ever. These skills are my bes
 
 Skills I use daily for code work.
 
-- **[diagnose](./skills/engineering/diagnose/SKILL.md)** — Disciplined diagnosis loop for hard bugs and performance regressions: reproduce → minimise → hypothesise → instrument → fix → regression-test.
-- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** — Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` and ADRs inline.
-- **[triage](./skills/engineering/triage/SKILL.md)** — Triage issues through a state machine of triage roles.
-- **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — Find deepening opportunities in a codebase, informed by the domain language in `CONTEXT.md` and the decisions in `docs/adr/`.
-- **[setup-agent-skills](./skills/engineering/setup-agent-skills/SKILL.md)** — Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume. Run once per repo before using `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out`.
-- **[tdd](./skills/engineering/tdd/SKILL.md)** — Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
-- **[to-issues](./skills/engineering/to-issues/SKILL.md)** — Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices.
-- **[to-prd](./skills/engineering/to-prd/SKILL.md)** — Turn the current conversation context into a PRD and submit it as a GitHub issue. No interview — just synthesizes what you've already discussed.
-- **[zoom-out](./skills/engineering/zoom-out/SKILL.md)** — Tell the agent to zoom out and give broader context or a higher-level perspective on an unfamiliar section of code.
+- **[acceptance-engineer](./skills/engineering/acceptance-engineer/SKILL.md)** -- Write acceptance criteria calibrated for Codex's /goal audit protocol: every criterion independently verifiable by file inspection or command output.
+- **[design-interrogator](./skills/engineering/design-interrogator/SKILL.md)** -- HOW grilling session with built-in epistemic vigilance that challenges infeasible plans, ecosystem antipatterns, and NFR violations before design is frozen.
+- **[diagnose](./skills/engineering/diagnose/SKILL.md)** -- Disciplined diagnosis loop for hard bugs and performance regressions: reproduce -> minimise -> hypothesise -> instrument -> fix -> regression-test.
+- **[goal-compiler](./skills/engineering/goal-compiler/SKILL.md)** -- Assemble interrogation outputs into a self-contained, token-economical Codex /goal text with corrected misconceptions and an explicit stop rule.
+- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** -- Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` and ADRs inline.
+- **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** -- Find deepening opportunities in a codebase, informed by the domain language in `CONTEXT.md` and the decisions in `docs/adr/`.
+- **[interrogator-orchestrator](./skills/engineering/interrogator-orchestrator/SKILL.md)** -- Entry point for the five-stage Socratic pipeline: routes requirements -> design -> tasks -> acceptance -> goal in sequence, advancing only when ambiguity score reaches zero.
+- **[requirements-interrogator](./skills/engineering/requirements-interrogator/SKILL.md)** -- Socratic WHO/WHAT/WHY/NOT-WHAT/CONSTRAINTS grilling that eliminates ambiguity across all five requirement dimensions before design work starts.
+- **[setup-agent-skills](./skills/engineering/setup-agent-skills/SKILL.md)** -- Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume. Run once per repo before using `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out`.
+- **[task-decomposer](./skills/engineering/task-decomposer/SKILL.md)** -- Break a frozen design into ordered, independently-verifiable task slices, each with a single pass/fail verification command.
+- **[tdd](./skills/engineering/tdd/SKILL.md)** -- Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
+- **[to-issues](./skills/engineering/to-issues/SKILL.md)** -- Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices.
+- **[to-prd](./skills/engineering/to-prd/SKILL.md)** -- Turn the current conversation context into a PRD and submit it as a GitHub issue. No interview -- just synthesizes what you've already discussed.
+- **[triage](./skills/engineering/triage/SKILL.md)** -- Triage issues through a state machine of triage roles.
+- **[zoom-out](./skills/engineering/zoom-out/SKILL.md)** -- Tell the agent to zoom out and give broader context or a higher-level perspective on an unfamiliar section of code.
 
 ### Productivity
 
 General workflow tools, not code-specific.
 
-- **[caveman](./skills/productivity/caveman/SKILL.md)** — Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler while keeping full technical accuracy.
-- **[grill-me](./skills/productivity/grill-me/SKILL.md)** — Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
-- **[write-a-skill](./skills/productivity/write-a-skill/SKILL.md)** — Create new skills with proper structure, progressive disclosure, and bundled resources.
+- **[caveman](./skills/productivity/caveman/SKILL.md)** -- Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler while keeping full technical accuracy.
+- **[grill-me](./skills/productivity/grill-me/SKILL.md)** -- Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
+- **[write-a-skill](./skills/productivity/write-a-skill/SKILL.md)** -- Create new skills with proper structure, progressive disclosure, and bundled resources.
 
 ### Misc
 
 Tools I keep around but rarely use.
 
-- **[git-guardrails](./skills/misc/git-guardrails/SKILL.md)** — Set up safeguards that block or warn before dangerous git commands (push, reset --hard, clean, etc.) execute.
-- **[migrate-to-shoehorn](./skills/misc/migrate-to-shoehorn/SKILL.md)** — Migrate test files from `as` type assertions to @total-typescript/shoehorn.
-- **[scaffold-exercises](./skills/misc/scaffold-exercises/SKILL.md)** — Create exercise directory structures with sections, problems, solutions, and explainers.
-- **[setup-pre-commit](./skills/misc/setup-pre-commit/SKILL.md)** — Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.
+- **[git-guardrails](./skills/misc/git-guardrails/SKILL.md)** -- Set up safeguards that block or warn before dangerous git commands (push, reset --hard, clean, etc.) execute.
+- **[migrate-to-shoehorn](./skills/misc/migrate-to-shoehorn/SKILL.md)** -- Migrate test files from `as` type assertions to @total-typescript/shoehorn.
+- **[scaffold-exercises](./skills/misc/scaffold-exercises/SKILL.md)** -- Create exercise directory structures with sections, problems, solutions, and explainers.
+- **[setup-pre-commit](./skills/misc/setup-pre-commit/SKILL.md)** -- Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.
