@@ -23,15 +23,27 @@ function saveState(state) {
   fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2));
 }
 
+function gitDiff() {
+  try {
+    return execSync('git diff --name-only', { encoding: 'utf-8' });
+  } catch {
+    return '';
+  }
+}
+
 function runVerify() {
   const cmd = process.env.VERIFY_COMMAND;
-  if (!cmd) return { ok: true };
+  if (!cmd) return { ok: true, output: '' };
   try {
-    execSync(cmd, { stdio: 'inherit' });
-    return { ok: true };
-  } catch {
-    return { ok: false };
+    const out = execSync(cmd, { encoding: 'utf-8' });
+    return { ok: true, output: out };
+  } catch (e) {
+    return { ok: false, output: e.stdout + '\n' + e.stderr };
   }
+}
+
+function failurePrompt(task, verify, diff) {
+  return `Fix this task failure:\n\nTask:\n${task.text}\n\nVerification:\n${verify.output}\n\nDiff:\n${diff}`;
 }
 
 async function main() {
@@ -45,11 +57,12 @@ async function main() {
     const task = tasks[state.index];
     const retry = state.retries[task.index] || 0;
 
-    console.log(`Task ${state.index + 1}/${tasks.length} retry ${retry}`);
+    console.log(`Task ${state.index + 1}/${tasks.length}`);
 
     await client.runTurn(task.text);
 
     const verify = runVerify();
+    const diff = gitDiff();
 
     if (!verify.ok) {
       if (retry >= MAX_RETRIES) {
@@ -60,7 +73,7 @@ async function main() {
       state.retries[task.index] = retry + 1;
       saveState(state);
 
-      await client.runTurn(`Fix failure for task:\n${task.text}`);
+      await client.runTurn(failurePrompt(task, verify, diff));
       continue;
     }
 
