@@ -16,6 +16,12 @@
     "./skills/engineering/to-prd",
     "./skills/engineering/triage",
     "./skills/productivity/write-a-skill",
-    "./skills/engineering/zoom-out"
+    "./skills/engineering/zoom-out",
+    "./skills/engineering/interrogator-orchestrator",
+    "./skills/engineering/requirements-interrogator",
+    "./skills/engineering/design-interrogator",
+    "./skills/engineering/task-decomposer",
+    "./skills/engineering/acceptance-engineer",
+    "./skills/engineering/goal-compiler"
   ]
 }
