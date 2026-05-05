@@ -2,21 +2,19 @@
 
 const fs = require('fs');
 const { execSync } = require('child_process');
+const { CodexClient } = require('./codex-client');
 
 const STATE_FILE = '.agent/worker-state.json';
 const TASK_FILE = 'docs/goal/TASKS.md';
+const MAX_RETRIES = Number(process.env.MAX_RETRIES || 2);
 
 function loadTasks() {
-  if (!fs.existsSync(TASK_FILE)) {
-    console.error('No TASKS.md found');
-    process.exit(1);
-  }
   const content = fs.readFileSync(TASK_FILE, 'utf-8');
-  return content.split('\n## ').slice(1).map(t => t.trim());
+  return content.split('\n## ').slice(1).map((t, i) => ({ index: i, text: t.trim() }));
 }
 
 function loadState() {
-  if (!fs.existsSync(STATE_FILE)) return { index: 0 };
+  if (!fs.existsSync(STATE_FILE)) return { index: 0, retries: {} };
   return JSON.parse(fs.readFileSync(STATE_FILE));
 }
 
@@ -27,39 +25,51 @@ function saveState(state) {
 
 function runVerify() {
   const cmd = process.env.VERIFY_COMMAND;
-  if (!cmd) return true;
+  if (!cmd) return { ok: true };
   try {
     execSync(cmd, { stdio: 'inherit' });
-    return true;
+    return { ok: true };
   } catch {
-    return false;
+    return { ok: false };
   }
 }
 
-function main() {
+async function main() {
   const tasks = loadTasks();
   const state = loadState();
+  const client = new CodexClient();
+
+  await client.start();
 
   while (state.index < tasks.length) {
-    console.log(`Running task ${state.index + 1}/${tasks.length}`);
+    const task = tasks[state.index];
+    const retry = state.retries[task.index] || 0;
 
-    // Placeholder for Codex execution
-    console.log('>>> TODO: send task to Codex app-server');
+    console.log(`Task ${state.index + 1}/${tasks.length} retry ${retry}`);
 
-    const ok = runVerify();
+    await client.runTurn(task.text);
 
-    if (!ok) {
-      console.log('Verification failed, retry required');
-      break;
+    const verify = runVerify();
+
+    if (!verify.ok) {
+      if (retry >= MAX_RETRIES) {
+        console.error('Max retries reached');
+        process.exit(1);
+      }
+
+      state.retries[task.index] = retry + 1;
+      saveState(state);
+
+      await client.runTurn(`Fix failure for task:\n${task.text}`);
+      continue;
     }
 
     state.index++;
     saveState(state);
   }
 
-  if (state.index === tasks.length) {
-    console.log('All tasks complete');
-  }
+  console.log('Done');
+  await client.stop();
 }
 
 main();
