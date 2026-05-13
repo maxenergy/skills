@@ -67,6 +67,40 @@
       }
     },
     {
+      "name": "goal-pipeline",
+      "bucket": "engineering",
+      "distribution": "public",
+      "description": "Build a Codex /goal-ready implementation package through an adversarial PRD, design, plan, and TDD workflow. Use when the user wants to refine PRD/design/plan docs, prepare Codex /goal execution, or run specification-first TDD development.",
+      "path": "skills/engineering/goal-pipeline",
+      "skillFile": "skills/engineering/goal-pipeline/SKILL.md",
+      "resources": [
+        "references",
+        "scripts"
+      ],
+      "localMarkdownReferences": [
+        "references/00-understand-system.md",
+        "references/01-grill-requirements.md",
+        "references/02-spec-freeze.md",
+        "references/03-impact-analysis.md",
+        "references/04-task-slice.md",
+        "references/05-goal-pack.md",
+        "references/06-tdd-contract.md",
+        "references/07-codex-controller.md",
+        "references/08-verify-loop.md",
+        "references/09-goal-review.md",
+        "templates/CODEX_START.md",
+        "templates/DESIGN.md",
+        "templates/GOAL.md",
+        "templates/PLAN.md",
+        "templates/PRD.md",
+        "templates/TASKS.md"
+      ],
+      "platformMentions": {
+        "claude": 0,
+        "codex": 21
+      }
+    },
+    {
       "name": "grill-me",
       "bucket": "productivity",
       "distribution": "public",

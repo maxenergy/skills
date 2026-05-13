@@ -4,6 +4,7 @@
     "./skills/productivity/caveman",
     "./skills/engineering/diagnose",
     "./skills/misc/git-guardrails",
+    "./skills/engineering/goal-pipeline",
     "./skills/productivity/grill-me",
     "./skills/engineering/grill-with-docs",
     "./skills/engineering/improve-codebase-architecture",

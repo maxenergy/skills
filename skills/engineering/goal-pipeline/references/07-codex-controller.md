@@ -1,4 +1,4 @@
-# codex-controller (v2)
+# codex-controller
 
 ## Purpose
 
