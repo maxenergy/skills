@@ -70,7 +70,7 @@
       "name": "goal-pipeline",
       "bucket": "engineering",
       "distribution": "public",
-      "description": "Build a Codex /goal-ready implementation package through an adversarial PRD, design, plan, and TDD workflow. Use when the user wants to refine PRD/design/plan docs, prepare Codex /goal execution, or run specification-first TDD development.",
+      "description": "向导模式 — 从一句话需求开始拷问到底，敲定 需求 / 设计（含技术栈） / 任务拆分 三类 umbrella 文档，让 Codex /goal 或 Claude Code @ 加载即可按 TDD 自动开发。Use when the user wants PRD/design/plan refined, wants Codex /goal-ready packs, or wants a spec-first TDD wizard. 拷问用中文，技术术语保留英文，文件名保持英文以稳定 @ 引用。",
       "path": "skills/engineering/goal-pipeline",
       "skillFile": "skills/engineering/goal-pipeline/SKILL.md",
       "resources": [
@@ -88,16 +88,19 @@
         "references/07-codex-controller.md",
         "references/08-verify-loop.md",
         "references/09-goal-review.md",
+        "references/10-spec-wizard.md",
+        "templates/CLAUDE_CODE_START.md",
         "templates/CODEX_START.md",
         "templates/DESIGN.md",
         "templates/GOAL.md",
         "templates/PLAN.md",
         "templates/PRD.md",
+        "templates/REQUIREMENTS.md",
         "templates/TASKS.md"
       ],
       "platformMentions": {
-        "claude": 0,
-        "codex": 21
+        "claude": 12,
+        "codex": 23
       }
     },
     {

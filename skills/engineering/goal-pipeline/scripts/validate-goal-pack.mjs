@@ -5,7 +5,8 @@ import process from "node:process";
 
 const root = process.cwd();
 const goalDir = path.join(root, "docs", "goal");
-const required = ["PRD.md", "REQUIREMENTS.md", "NON_GOALS.md", "DESIGN.md", "IMPACT.md", "PLAN.md", "TASKS.md", "ACCEPTANCE.md", "VERIFY.md", "GOAL.md", "CODEX_START.md"];
+const required = ["PRD.md", "REQUIREMENTS.md", "NON_GOALS.md", "DESIGN.md", "IMPACT.md", "PLAN.md", "TASKS.md", "ACCEPTANCE.md", "VERIFY.md", "GOAL.md", "CODEX_START.md", "CLAUDE_CODE_START.md"];
+const umbrellaDocs = ["REQUIREMENTS.md", "DESIGN.md", "TASKS.md"];
 const taskHeadings = ["Goal", "User-Visible Behavior", "Scope", "Files Likely Touched", "RED Test", "Expected Failure", "GREEN Boundary", "Refactor Allowance", "Verification Command", "Acceptance Criteria", "Rollback Condition", "Dependencies", "Do Not Touch"];
 
 function read(rel) {
@@ -76,6 +77,30 @@ if (!fs.existsSync(goalDir)) {
     const start = read("CODEX_START.md");
     if (!start.includes("/goal")) fail("CODEX_START.md must contain /goal");
     if (!start.includes("docs/goal/GOAL.md")) fail("CODEX_START.md must point at docs/goal/GOAL.md");
+  }
+
+  if (fs.existsSync(path.join(goalDir, "CLAUDE_CODE_START.md"))) {
+    const start = read("CLAUDE_CODE_START.md");
+    for (const u of umbrellaDocs) {
+      if (!start.includes(`@docs/goal/${u}`)) fail(`CLAUDE_CODE_START.md must @-reference docs/goal/${u}`);
+    }
+    if (!/RED/i.test(start) || !/GREEN/i.test(start)) fail("CLAUDE_CODE_START.md is missing TDD RED/GREEN instructions");
+  }
+
+  if (fs.existsSync(path.join(goalDir, "DESIGN.md"))) {
+    const design = read("DESIGN.md");
+    if (!/^#{1,6}\s+Tech Stack\b/im.test(design)) {
+      fail('DESIGN.md is missing a "Tech Stack" section');
+    }
+  }
+
+  for (const u of umbrellaDocs) {
+    const full = path.join(goalDir, u);
+    if (!fs.existsSync(full)) continue;
+    const body = fs.readFileSync(full, "utf8");
+    if (!/^#{1,6}\s+Related Documents\b/im.test(body)) {
+      fail(`${u} is missing a "Related Documents" cross-link section (required for umbrella docs)`);
+    }
   }
 }
 
