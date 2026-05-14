@@ -1,0 +1,14 @@
+{
+  "name": "maxenergy-skills",
+  "owner": {
+    "name": "maxenergy",
+    "email": "maxenergy.luo@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "mattpocock-skills",
+      "source": "./",
+      "description": "Skills suite fork (forked from mattpocock/skills) plus the /spec-wizard 向导模式 — from one-sentence idea to REQUIREMENTS / DESIGN (with tech stack) / TASKS umbrella docs, then auto-implement via Codex /goal or Claude Code @ in strict TDD."
+    }
+  ]
+}
